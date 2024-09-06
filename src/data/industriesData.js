@@ -114,5 +114,81 @@ export const industriesData = {
         },
       ],
     },
+    {
+      name: "Finance",
+      categories: [
+        {
+          name: "Investment Banking",
+          companies: [
+            { name: "Global Investments Ltd.", description: "Leading investment banking services." },
+            { name: "Wealth Creators Inc.", description: "Specializing in mergers and acquisitions." },
+          ],
+          professionals: [
+            { name: "Michael Scott", title: "Investment Banker" },
+            { name: "Olivia Pope", title: "Financial Analyst" },
+          ],
+        },
+        {
+          name: "Fintech",
+          companies: [
+            { name: "PayEase", description: "Innovative payment solutions provider." },
+            { name: "CryptoTech", description: "Blockchain and cryptocurrency experts." },
+          ],
+          professionals: [
+            { name: "Peter Parker", title: "Fintech Developer" },
+            { name: "Quinn Rodriguez", title: "Blockchain Specialist" },
+          ],
+        },
+        {
+          name: "Insurance",
+          companies: [
+            { name: "SafeGuard Insurance", description: "Comprehensive insurance solutions." },
+            { name: "RiskShield Co.", description: "Specializing in risk management and insurance." },
+          ],
+          professionals: [
+            { name: "Rachel Green", title: "Insurance Underwriter" },
+            { name: "Sam Wilson", title: "Risk Analyst" },
+          ],
+        },
+      ],
+    },
+    {
+      name: "Education",
+      categories: [
+        {
+          name: "EdTech",
+          companies: [
+            { name: "LearnSmart", description: "Innovative e-learning platforms." },
+            { name: "EduTech Solutions", description: "Developing educational software and apps." },
+          ],
+          professionals: [
+            { name: "Tina Fey", title: "EdTech Product Manager" },
+            { name: "Umar Khan", title: "Instructional Designer" },
+          ],
+        },
+        {
+          name: "Online Tutoring",
+          companies: [
+            { name: "TutorConnect", description: "Global online tutoring platform." },
+            { name: "SkillBoost", description: "Skill-based online learning community." },
+          ],
+          professionals: [
+            { name: "Victoria Chen", title: "Online Tutor" },
+            { name: "William Taylor", title: "Education Consultant" },
+          ],
+        },
+        {
+          name: "Corporate Training",
+          companies: [
+            { name: "SkillForge", description: "Customized corporate training solutions." },
+            { name: "LeadershipPro", description: "Executive coaching and leadership development." },
+          ],
+          professionals: [
+            { name: "Xavier Brown", title: "Corporate Trainer" },
+            { name: "Yara Ali", title: "Leadership Coach" },
+          ],
+        },
+      ],
+    },
   ],
 };

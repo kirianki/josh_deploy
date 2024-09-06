@@ -3,6 +3,7 @@ import Sidebar from '../components/Sidebar';
 import CategoryWidget from '../components/CategoryWidget';
 import TaskBar from '../components/TaskBar';
 import CategoryDetails from '../components/CategoryDetails';
+import WelcomeCarousel from '../components/WelcomeCarousel';
 import { industriesData } from '../data/industriesData';
 import { Card, CardContent } from "@/components/ui/card";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -29,7 +30,7 @@ const Index = () => {
   );
 
   return (
-    <div className="flex flex-col h-screen bg-gray-100">
+    <div className="flex flex-col h-screen bg-gray-100 dark:bg-gray-900">
       <TaskBar />
       <div className="flex flex-1 overflow-hidden">
         <div className="md:hidden">
@@ -56,10 +57,11 @@ const Index = () => {
           />
         </div>
         <div className="flex-1 p-4 md:p-8 overflow-y-auto">
-          <Card className="mb-6 bg-white shadow-lg">
+          <WelcomeCarousel />
+          <Card className="mb-6 bg-white dark:bg-gray-800 shadow-lg">
             <CardContent className="p-4 md:p-6">
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-800">{selectedIndustry}</h1>
-              <p className="text-sm md:text-base text-gray-600 mt-2">Explore companies and professionals in this industry</p>
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-200">{selectedIndustry}</h1>
+              <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 mt-2">Explore companies and professionals in this industry</p>
             </CardContent>
           </Card>
           {selectedCategory ? (
