@@ -1,19 +1,26 @@
 import React from 'react';
-import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { ArrowRight } from 'lucide-react';
 
 const CategoryWidget = ({ category, onSelect }) => {
   return (
-    <Card className="mb-4 cursor-pointer hover:shadow-lg transition-shadow" onClick={() => onSelect(category)}>
-      <CardHeader className="text-center">
-        <img src={`/placeholder.svg`} alt={category.name} className="w-24 h-24 mx-auto mb-2" />
-        <CardTitle>{category.name}</CardTitle>
+    <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl">
+      <CardHeader className="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-6">
+        <CardTitle className="text-xl">{category.name}</CardTitle>
       </CardHeader>
-      <div className="p-4">
-        <Button className="w-full" onClick={(e) => { e.stopPropagation(); onSelect(category); }}>
+      <CardContent className="p-6">
+        <p className="text-gray-600 mb-4">
+          {`${category.companies.length} companies • ${category.professionals.length} professionals`}
+        </p>
+        <Button 
+          className="w-full flex items-center justify-center" 
+          onClick={() => onSelect(category)}
+        >
           View Details
+          <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
-      </div>
+      </CardContent>
     </Card>
   );
 };

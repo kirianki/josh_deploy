@@ -4,6 +4,7 @@ import CategoryWidget from '../components/CategoryWidget';
 import TaskBar from '../components/TaskBar';
 import CategoryDetails from '../components/CategoryDetails';
 import { industriesData } from '../data/industriesData';
+import { Card, CardContent } from "@/components/ui/card";
 
 const Index = () => {
   const [selectedIndustry, setSelectedIndustry] = useState(industriesData.industries[0].name);
@@ -23,7 +24,7 @@ const Index = () => {
   );
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-screen bg-gray-100">
       <TaskBar />
       <div className="flex flex-1 overflow-hidden">
         <Sidebar
@@ -32,7 +33,12 @@ const Index = () => {
           onSelectIndustry={handleSelectIndustry}
         />
         <div className="flex-1 p-8 overflow-y-auto">
-          <h1 className="text-3xl font-bold mb-6">{selectedIndustry}</h1>
+          <Card className="mb-6 bg-white shadow-lg">
+            <CardContent className="p-6">
+              <h1 className="text-3xl font-bold text-gray-800">{selectedIndustry}</h1>
+              <p className="text-gray-600 mt-2">Explore companies and professionals in this industry</p>
+            </CardContent>
+          </Card>
           {selectedCategory ? (
             <CategoryDetails category={selectedCategory} />
           ) : (
