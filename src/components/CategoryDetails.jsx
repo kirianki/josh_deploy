@@ -22,12 +22,12 @@ const CategoryDetails = ({ category, onBack }) => {
 
   return (
     <Card className="mb-4">
-      <CardHeader className="flex flex-row items-center justify-between">
+      <CardHeader className="flex flex-col md:flex-row items-start md:items-center justify-between">
         <div>
           <Button variant="ghost" size="sm" onClick={onBack} className="mb-2">
             <ArrowLeft className="mr-2 h-4 w-4" /> Back to Categories
           </Button>
-          <CardTitle className="text-2xl">{category.name}</CardTitle>
+          <CardTitle className="text-xl md:text-2xl">{category.name}</CardTitle>
         </div>
       </CardHeader>
       <CardContent>
@@ -49,9 +49,9 @@ const CategoryDetails = ({ category, onBack }) => {
           </div>
         ) : (
           <Tabs defaultValue="companies">
-            <TabsList className="mb-4">
-              <TabsTrigger value="companies">Companies</TabsTrigger>
-              <TabsTrigger value="professionals">Professionals</TabsTrigger>
+            <TabsList className="mb-4 w-full">
+              <TabsTrigger value="companies" className="flex-1">Companies</TabsTrigger>
+              <TabsTrigger value="professionals" className="flex-1">Professionals</TabsTrigger>
             </TabsList>
             <TabsContent value="companies">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -62,10 +62,10 @@ const CategoryDetails = ({ category, onBack }) => {
                     onClick={() => handleItemClick(company, 'company')}
                   >
                     <CardContent className="p-4">
-                      <h4 className="font-bold flex items-center">
+                      <h4 className="font-bold flex items-center text-sm md:text-base">
                         <Building2 className="mr-2 h-4 w-4" /> {company.name}
                       </h4>
-                      <p className="text-sm text-gray-600 mt-2">{company.description}</p>
+                      <p className="text-xs md:text-sm text-gray-600 mt-2">{company.description}</p>
                     </CardContent>
                   </Card>
                 ))}
@@ -80,10 +80,10 @@ const CategoryDetails = ({ category, onBack }) => {
                     onClick={() => handleItemClick(professional, 'professional')}
                   >
                     <CardContent className="p-4">
-                      <h4 className="font-bold flex items-center">
+                      <h4 className="font-bold flex items-center text-sm md:text-base">
                         <User className="mr-2 h-4 w-4" /> {professional.name}
                       </h4>
-                      <Badge variant="secondary" className="mt-2">
+                      <Badge variant="secondary" className="mt-2 text-xs md:text-sm">
                         {professional.title}
                       </Badge>
                     </CardContent>

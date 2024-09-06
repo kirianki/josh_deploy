@@ -4,7 +4,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 
 const Sidebar = ({ industries, selectedIndustry, onSelectIndustry }) => {
   return (
-    <div className="w-64 bg-white shadow-md h-screen flex flex-col">
+    <div className="w-full md:w-64 bg-white shadow-md h-full flex flex-col">
       <div className="p-4 bg-gray-800 text-white">
         <h2 className="text-xl font-bold">Industry Navigator</h2>
       </div>
