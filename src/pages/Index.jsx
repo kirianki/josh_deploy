@@ -1,11 +1,241 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import React, { useState } from 'react';
+import Sidebar from '../components/Sidebar';
+import CategoryWidget from '../components/CategoryWidget';
+
+const industriesData = {
+  "industries": [
+    {
+      "name": "Technology",
+      "categories": [
+        {
+          "name": "Software Development",
+          "companies": [
+            {
+              "name": "Acme Corporation",
+              "description": "Leading technology company."
+            },
+            {
+              "name": "Tech Innovators",
+              "description": "Experts in custom software solutions."
+            }
+          ],
+          "professionals": [
+            {
+              "name": "John Doe",
+              "title": "Software Engineer"
+            },
+            {
+              "name": "Jane Smith",
+              "title": "Full Stack Developer"
+            }
+          ]
+        },
+        {
+          "name": "Hardware Engineering",
+          "companies": [
+            {
+              "name": "Hardware Solutions Inc.",
+              "description": "Specializing in cutting-edge hardware technologies."
+            },
+            {
+              "name": "ChipTech",
+              "description": "Leaders in semiconductor design and manufacturing."
+            }
+          ],
+          "professionals": [
+            {
+              "name": "Alice Johnson",
+              "title": "Hardware Engineer"
+            },
+            {
+              "name": "Bob Miller",
+              "title": "Embedded Systems Specialist"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Marketing",
+      "categories": [
+        {
+          "name": "Digital Marketing",
+          "companies": [
+            {
+              "name": "Market Wizards",
+              "description": "Pioneers in online marketing strategies."
+            },
+            {
+              "name": "SEO Gurus",
+              "description": "Specializing in search engine optimization."
+            }
+          ],
+          "professionals": [
+            {
+              "name": "Charlie Lee",
+              "title": "Digital Marketing Specialist"
+            },
+            {
+              "name": "Diana Ross",
+              "title": "Content Marketing Manager"
+            }
+          ]
+        },
+        {
+          "name": "Branding",
+          "companies": [
+            {
+              "name": "Brand Builders",
+              "description": "Experts in brand development and strategy."
+            },
+            {
+              "name": "Creative Minds",
+              "description": "Innovative branding solutions for businesses."
+            }
+          ],
+          "professionals": [
+            {
+              "name": "Emily Turner",
+              "title": "Brand Strategist"
+            },
+            {
+              "name": "Frank Wilson",
+              "title": "Graphic Designer"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Healthcare",
+      "categories": [
+        {
+          "name": "Medical Technology",
+          "companies": [
+            {
+              "name": "HealthTech Innovations",
+              "description": "Developing cutting-edge medical devices."
+            },
+            {
+              "name": "MedPro Solutions",
+              "description": "Specialists in medical software and healthcare IT."
+            }
+          ],
+          "professionals": [
+            {
+              "name": "George Baker",
+              "title": "Biomedical Engineer"
+            },
+            {
+              "name": "Hannah Clark",
+              "title": "Healthcare IT Consultant"
+            }
+          ]
+        },
+        {
+          "name": "Pharmaceuticals",
+          "companies": [
+            {
+              "name": "Pharma World",
+              "description": "Leading global pharmaceutical company."
+            },
+            {
+              "name": "BioMed Corp",
+              "description": "Innovators in biopharmaceuticals and vaccines."
+            }
+          ],
+          "professionals": [
+            {
+              "name": "Ian Davis",
+              "title": "Pharmaceutical Scientist"
+            },
+            {
+              "name": "Jessica Green",
+              "title": "Clinical Research Coordinator"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Finance",
+      "categories": [
+        {
+          "name": "Investment Banking",
+          "companies": [
+            {
+              "name": "Global Finance Group",
+              "description": "International leaders in investment banking."
+            },
+            {
+              "name": "Capital Wealth Advisors",
+              "description": "Experts in wealth management and investment strategies."
+            }
+          ],
+          "professionals": [
+            {
+              "name": "Kevin Parker",
+              "title": "Investment Banker"
+            },
+            {
+              "name": "Laura Martinez",
+              "title": "Financial Analyst"
+            }
+          ]
+        },
+        {
+          "name": "Insurance",
+          "companies": [
+            {
+              "name": "SafeGuard Insurance",
+              "description": "Providing comprehensive insurance solutions."
+            },
+            {
+              "name": "LifeShield",
+              "description": "Experts in life and health insurance."
+            }
+          ],
+          "professionals": [
+            {
+              "name": "Michael Evans",
+              "title": "Insurance Underwriter"
+            },
+            {
+              "name": "Nina Patel",
+              "title": "Risk Management Specialist"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+};
 
 const Index = () => {
+  const [selectedIndustry, setSelectedIndustry] = useState(industriesData.industries[0].name);
+
+  const handleSelectIndustry = (industryName) => {
+    setSelectedIndustry(industryName);
+  };
+
+  const selectedIndustryData = industriesData.industries.find(
+    (industry) => industry.name === selectedIndustry
+  );
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <div className="flex">
+      <Sidebar
+        industries={industriesData.industries}
+        selectedIndustry={selectedIndustry}
+        onSelectIndustry={handleSelectIndustry}
+      />
+      <div className="flex-1 p-8">
+        <h1 className="text-3xl font-bold mb-6">{selectedIndustry}</h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {selectedIndustryData.categories.map((category) => (
+            <CategoryWidget key={category.name} category={category} />
+          ))}
+        </div>
       </div>
     </div>
   );
