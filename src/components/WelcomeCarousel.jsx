@@ -22,15 +22,15 @@ const WelcomeCarousel = () => {
   ];
 
   return (
-    <Carousel className="w-full max-w-4xl mx-auto mb-8">
+    <Carousel className="w-full h-screen">
       <CarouselContent>
         {slides.map((slide, index) => (
-          <CarouselItem key={index}>
-            <Card>
-              <CardContent className="flex flex-col items-center p-6">
-                <img src={slide.image} alt={slide.title} className="w-full h-48 object-cover mb-4 rounded-md" />
-                <h2 className="text-2xl font-bold mb-2">{slide.title}</h2>
-                <p className="text-center text-gray-600">{slide.description}</p>
+          <CarouselItem key={index} className="h-full">
+            <Card className="h-full border-0">
+              <CardContent className="flex flex-col items-center justify-center h-full p-6 bg-gradient-to-r from-blue-500 to-purple-600 text-white">
+                <img src={slide.image} alt={slide.title} className="w-full max-w-md h-64 object-cover mb-8 rounded-md" />
+                <h2 className="text-4xl font-bold mb-4 text-center">{slide.title}</h2>
+                <p className="text-xl text-center max-w-2xl">{slide.description}</p>
               </CardContent>
             </Card>
           </CarouselItem>
