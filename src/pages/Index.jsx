@@ -4,11 +4,14 @@ import CategoryWidget from '../components/CategoryWidget';
 import TaskBar from '../components/TaskBar';
 import CategoryDetails from '../components/CategoryDetails';
 import WelcomeCarousel from '../components/WelcomeCarousel';
+import HeroSection from '../components/HeroSection';
+import Footer from '../components/Footer';
 import { industriesData } from '../data/industriesData';
 import { Card, CardContent } from "@/components/ui/card";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Index = () => {
   const [selectedIndustry, setSelectedIndustry] = useState(industriesData.industries[0].name);
@@ -31,7 +34,7 @@ const Index = () => {
   );
 
   return (
-    <div className="flex flex-col h-screen bg-gray-100 dark:bg-gray-900">
+    <div className="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900">
       {showWelcome && <WelcomeCarousel onClose={() => setShowWelcome(false)} />}
       <TaskBar />
       <div className="flex flex-1 overflow-hidden">
@@ -60,28 +63,47 @@ const Index = () => {
         </div>
         <div className="flex-1 overflow-y-auto">
           <div className="p-4 md:p-8">
+            <HeroSection />
             <Card className="mb-6 bg-white dark:bg-gray-800 shadow-lg">
               <CardContent className="p-4 md:p-6">
                 <h1 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-200">{selectedIndustry}</h1>
                 <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 mt-2">Explore companies and professionals in this industry</p>
               </CardContent>
             </Card>
-            {selectedCategory ? (
-              <CategoryDetails category={selectedCategory} onBack={() => setSelectedCategory(null)} />
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                {selectedIndustryData.categories.map((category) => (
-                  <CategoryWidget
-                    key={category.name}
-                    category={category}
-                    onSelect={handleSelectCategory}
-                  />
-                ))}
-              </div>
-            )}
+            <AnimatePresence mode="wait">
+              {selectedCategory ? (
+                <motion.div
+                  key="category-details"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <CategoryDetails category={selectedCategory} onBack={() => setSelectedCategory(null)} />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="category-widgets"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
+                >
+                  {selectedIndustryData.categories.map((category) => (
+                    <CategoryWidget
+                      key={category.name}
+                      category={category}
+                      onSelect={handleSelectCategory}
+                    />
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
