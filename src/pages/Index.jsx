@@ -3,6 +3,7 @@ import Sidebar from '../components/Sidebar';
 import CategoryWidget from '../components/CategoryWidget';
 import TaskBar from '../components/TaskBar';
 import CategoryDetails from '../components/CategoryDetails';
+import WelcomeCarousel from '../components/WelcomeCarousel';
 import { industriesData } from '../data/industriesData';
 import { Card, CardContent } from "@/components/ui/card";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -13,6 +14,7 @@ const Index = () => {
   const [selectedIndustry, setSelectedIndustry] = useState(industriesData.industries[0].name);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(true);
 
   const handleSelectIndustry = (industryName) => {
     setSelectedIndustry(industryName);
@@ -30,6 +32,7 @@ const Index = () => {
 
   return (
     <div className="flex flex-col h-screen bg-gray-100 dark:bg-gray-900">
+      {showWelcome && <WelcomeCarousel onClose={() => setShowWelcome(false)} />}
       <TaskBar />
       <div className="flex flex-1 overflow-hidden">
         <div className="md:hidden">
