@@ -8,7 +8,6 @@ import HeroSection from '../components/HeroSection';
 import Footer from '../components/Footer';
 import IndustrySelectionModal from '../components/IndustrySelectionModal';
 import SearchResults from '../components/SearchResults';
-import ParticleBackground from '../components/ParticleBackground';
 import { industriesData } from '../data/industriesData';
 import { Card, CardContent } from "@/components/ui/card";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -60,19 +59,18 @@ const Index = () => {
   );
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-900 text-white">
-      <ParticleBackground />
+    <div className="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900">
       {showWelcome && <WelcomeCarousel onClose={() => setShowWelcome(false)} />}
       <TaskBar onSearch={handleSearch} />
       <div className="flex flex-1 overflow-hidden">
         <div className="md:hidden">
           <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="ml-2 mt-2 text-neon-blue">
+              <Button variant="ghost" size="icon" className="ml-2 mt-2">
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="p-0 bg-gray-800">
+            <SheetContent side="left" className="p-0">
               <Sidebar
                 industries={industriesData.industries}
                 selectedIndustry={selectedIndustry}
@@ -91,10 +89,10 @@ const Index = () => {
         <div className="flex-1 overflow-y-auto">
           <div className="p-4 md:p-8">
             <HeroSection onGetStarted={handleGetStarted} />
-            <Card className="mb-6 bg-gray-800 bg-opacity-50 backdrop-filter backdrop-blur-lg border-neon-blue border-opacity-50 shadow-lg">
+            <Card className="mb-6 bg-white dark:bg-gray-800 shadow-lg">
               <CardContent className="p-4 md:p-6">
-                <h1 className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple">{selectedIndustry}</h1>
-                <p className="text-sm md:text-base text-gray-300 mt-2">Explore cutting-edge service providers and professionals in this industry</p>
+                <h1 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-200">{selectedIndustry}</h1>
+                <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 mt-2">Explore service providers and professionals in this industry</p>
               </CardContent>
             </Card>
             <AnimatePresence mode="wait">
