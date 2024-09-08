@@ -10,7 +10,6 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const CategoryDetails = ({ category, onBack }) => {
   const [selectedItem, setSelectedItem] = useState(null);
-  const [activeTab, setActiveTab] = useState("companies");
 
   if (!category) return null;
 
@@ -29,8 +28,8 @@ const CategoryDetails = ({ category, onBack }) => {
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.3 }}
     >
-      <Card className="mb-4 overflow-hidden bg-gray-800 text-white border-neon-blue">
-        <CardHeader className="flex flex-col md:flex-row items-start md:items-center justify-between bg-gradient-to-r from-neon-blue to-neon-purple">
+      <Card className="mb-4 overflow-hidden">
+        <CardHeader className="flex flex-col md:flex-row items-start md:items-center justify-between bg-gradient-to-r from-blue-500 to-purple-600 text-white">
           <div>
             <Button variant="ghost" size="sm" onClick={onBack} className="mb-2 text-white hover:text-gray-200">
               <ArrowLeft className="mr-2 h-4 w-4" /> Back to Categories
@@ -44,7 +43,7 @@ const CategoryDetails = ({ category, onBack }) => {
               <Button
                 variant="ghost"
                 size="icon"
-                className="absolute top-2 right-2 text-white"
+                className="absolute top-2 right-2"
                 onClick={handleCloseDetails}
               >
                 <X className="h-4 w-4" />
@@ -56,24 +55,24 @@ const CategoryDetails = ({ category, onBack }) => {
               )}
             </div>
           ) : (
-            <Tabs defaultValue={activeTab} onValueChange={setActiveTab} className="w-full">
-              <TabsList className="w-full bg-gray-700">
-                <TabsTrigger value="companies" className="flex-1 text-white data-[state=active]:bg-neon-blue">Companies</TabsTrigger>
-                <TabsTrigger value="professionals" className="flex-1 text-white data-[state=active]:bg-neon-purple">Professionals</TabsTrigger>
+            <Tabs defaultValue="companies" className="w-full">
+              <TabsList className="w-full">
+                <TabsTrigger value="companies" className="flex-1">Companies</TabsTrigger>
+                <TabsTrigger value="professionals" className="flex-1">Professionals</TabsTrigger>
               </TabsList>
               <TabsContent value="companies" className="p-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {category.companies.map((company) => (
                     <Card
                       key={company.name}
-                      className="bg-gray-700 cursor-pointer hover:bg-gray-600 transition-colors"
+                      className="bg-gray-50 dark:bg-gray-800 cursor-pointer hover:shadow-md transition-shadow"
                       onClick={() => handleItemClick(company, 'company')}
                     >
                       <CardContent className="p-4">
-                        <h4 className="font-bold flex items-center text-sm md:text-base text-neon-blue">
+                        <h4 className="font-bold flex items-center text-sm md:text-base">
                           <Building2 className="mr-2 h-4 w-4" /> {company.name}
                         </h4>
-                        <p className="text-xs md:text-sm text-gray-300 mt-2">{company.description}</p>
+                        <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400 mt-2">{company.description}</p>
                       </CardContent>
                     </Card>
                   ))}
@@ -84,11 +83,11 @@ const CategoryDetails = ({ category, onBack }) => {
                   {category.professionals.map((professional) => (
                     <Card
                       key={professional.name}
-                      className="bg-gray-700 cursor-pointer hover:bg-gray-600 transition-colors"
+                      className="bg-gray-50 dark:bg-gray-800 cursor-pointer hover:shadow-md transition-shadow"
                       onClick={() => handleItemClick(professional, 'professional')}
                     >
                       <CardContent className="p-4">
-                        <h4 className="font-bold flex items-center text-sm md:text-base text-neon-purple">
+                        <h4 className="font-bold flex items-center text-sm md:text-base">
                           <User className="mr-2 h-4 w-4" /> {professional.name}
                         </h4>
                         <Badge variant="secondary" className="mt-2 text-xs md:text-sm">
