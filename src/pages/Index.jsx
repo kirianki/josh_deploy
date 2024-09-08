@@ -6,6 +6,7 @@ import CategoryDetails from '../components/CategoryDetails';
 import WelcomeCarousel from '../components/WelcomeCarousel';
 import HeroSection from '../components/HeroSection';
 import Footer from '../components/Footer';
+import IndustrySelectionModal from '../components/IndustrySelectionModal';
 import { industriesData } from '../data/industriesData';
 import { Card, CardContent } from "@/components/ui/card";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -18,6 +19,7 @@ const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showWelcome, setShowWelcome] = useState(true);
+  const [showIndustryModal, setShowIndustryModal] = useState(false);
 
   const handleSelectIndustry = (industryName) => {
     setSelectedIndustry(industryName);
@@ -27,6 +29,10 @@ const Index = () => {
 
   const handleSelectCategory = (category) => {
     setSelectedCategory(category);
+  };
+
+  const handleGetStarted = () => {
+    setShowIndustryModal(true);
   };
 
   const selectedIndustryData = industriesData.industries.find(
@@ -63,7 +69,7 @@ const Index = () => {
         </div>
         <div className="flex-1 overflow-y-auto">
           <div className="p-4 md:p-8">
-            <HeroSection />
+            <HeroSection onGetStarted={handleGetStarted} />
             <Card className="mb-6 bg-white dark:bg-gray-800 shadow-lg">
               <CardContent className="p-4 md:p-6">
                 <h1 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-200">{selectedIndustry}</h1>
@@ -104,6 +110,12 @@ const Index = () => {
         </div>
       </div>
       <Footer />
+      <IndustrySelectionModal
+        isOpen={showIndustryModal}
+        onClose={() => setShowIndustryModal(false)}
+        industries={industriesData.industries}
+        onSelectIndustry={handleSelectIndustry}
+      />
     </div>
   );
 };
