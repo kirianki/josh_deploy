@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CompanyDetails from './CompanyDetails';
 import ProfessionalDetails from './ProfessionalDetails';
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const CategoryDetails = ({ category, onBack }) => {
   const [selectedItem, setSelectedItem] = useState(null);

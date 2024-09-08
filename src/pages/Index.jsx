@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
 import CategoryWidget from '../components/CategoryWidget';
 import TaskBar from '../components/TaskBar';
@@ -23,6 +23,15 @@ const Index = () => {
   const [showWelcome, setShowWelcome] = useState(true);
   const [showIndustryModal, setShowIndustryModal] = useState(false);
   const [searchResults, setSearchResults] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    // Simulate loading
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+  }, [selectedIndustry, selectedCategory]);
 
   const handleSelectIndustry = (industryName) => {
     setSelectedIndustry(industryName);
@@ -98,7 +107,17 @@ const Index = () => {
               </CardContent>
             </Card>
             <AnimatePresence mode="wait">
-              {searchResults ? (
+              {isLoading ? (
+                <motion.div
+                  key="loading"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="flex justify-center items-center h-64"
+                >
+                  <div className="w-16 h-16 border-4 border-neon-blue border-t-transparent rounded-full animate-spin"></div>
+                </motion.div>
+              ) : searchResults ? (
                 <motion.div
                   key="search-results"
                   initial={{ opacity: 0, y: 20 }}
