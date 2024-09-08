@@ -8,17 +8,17 @@ const WelcomeCarousel = ({ onClose }) => {
   const slides = [
     {
       title: "Welcome to Industry Navigator",
-      description: "Explore diverse industries and connect with professionals.",
+      description: "Discover and connect with service providers across various industries.",
       image: "/placeholder.svg",
     },
     {
-      title: "Discover Opportunities",
-      description: "Find companies and experts in your field of interest.",
+      title: "Find the Right Services",
+      description: "Explore companies and experts offering services in your industry.",
       image: "/placeholder.svg",
     },
     {
-      title: "Stay Informed",
-      description: "Get the latest insights on industry trends and innovations.",
+      title: "Make Informed Decisions",
+      description: "Get detailed information about service providers to choose the best fit for your needs.",
       image: "/placeholder.svg",
     },
   ];
@@ -44,7 +44,7 @@ const WelcomeCarousel = ({ onClose }) => {
                       <p className="text-xl mb-6">{slide.description}</p>
                       {index === slides.length - 1 && (
                         <Button onClick={onClose} variant="secondary" size="lg" className="hover:bg-white hover:text-blue-600 transition-colors">
-                          Get Started
+                          Start Exploring
                         </Button>
                       )}
                     </div>

@@ -92,7 +92,7 @@ const Index = () => {
             <Card className="mb-6 bg-white dark:bg-gray-800 shadow-lg">
               <CardContent className="p-4 md:p-6">
                 <h1 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-200">{selectedIndustry}</h1>
-                <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 mt-2">Explore companies and professionals in this industry</p>
+                <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 mt-2">Explore service providers and professionals in this industry</p>
               </CardContent>
             </Card>
             <AnimatePresence mode="wait">

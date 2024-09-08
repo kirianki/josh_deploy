@@ -17,7 +17,7 @@ const HeroSection = ({ onGetStarted }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.5 }}
         >
-          Discover Your Industry
+          Find Services in Your Industry
         </motion.h1>
         <motion.p 
           className="text-xl md:text-2xl mb-8"
@@ -25,7 +25,7 @@ const HeroSection = ({ onGetStarted }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.5 }}
         >
-          Connect with top companies and professionals in your field
+          Connect with top companies and professionals offering services in your field
         </motion.p>
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -33,7 +33,7 @@ const HeroSection = ({ onGetStarted }) => {
           transition={{ delay: 0.6, duration: 0.5 }}
         >
           <Button size="lg" variant="secondary" onClick={onGetStarted}>
-            Get Started
+            Explore Services
           </Button>
         </motion.div>
       </div>
