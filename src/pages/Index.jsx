@@ -7,6 +7,7 @@ import WelcomeCarousel from '../components/WelcomeCarousel';
 import HeroSection from '../components/HeroSection';
 import Footer from '../components/Footer';
 import IndustrySelectionModal from '../components/IndustrySelectionModal';
+import SearchResults from '../components/SearchResults';
 import { industriesData } from '../data/industriesData';
 import { Card, CardContent } from "@/components/ui/card";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -20,19 +21,37 @@ const Index = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showWelcome, setShowWelcome] = useState(true);
   const [showIndustryModal, setShowIndustryModal] = useState(false);
+  const [searchResults, setSearchResults] = useState(null);
 
   const handleSelectIndustry = (industryName) => {
     setSelectedIndustry(industryName);
     setSelectedCategory(null);
     setSidebarOpen(false);
+    setSearchResults(null);
   };
 
   const handleSelectCategory = (category) => {
     setSelectedCategory(category);
+    setSearchResults(null);
   };
 
   const handleGetStarted = () => {
     setShowIndustryModal(true);
+  };
+
+  const handleSearch = (query) => {
+    const results = [];
+    industriesData.industries.forEach((industry) => {
+      if (industry.name.toLowerCase().includes(query.toLowerCase())) {
+        results.push({ name: industry.name, type: 'Industry' });
+      }
+      industry.categories.forEach((category) => {
+        if (category.name.toLowerCase().includes(query.toLowerCase())) {
+          results.push({ ...category, type: 'Category', industryName: industry.name });
+        }
+      });
+    });
+    setSearchResults(results);
   };
 
   const selectedIndustryData = industriesData.industries.find(
@@ -42,7 +61,7 @@ const Index = () => {
   return (
     <div className="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900">
       {showWelcome && <WelcomeCarousel onClose={() => setShowWelcome(false)} />}
-      <TaskBar />
+      <TaskBar onSearch={handleSearch} />
       <div className="flex flex-1 overflow-hidden">
         <div className="md:hidden">
           <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
@@ -77,7 +96,21 @@ const Index = () => {
               </CardContent>
             </Card>
             <AnimatePresence mode="wait">
-              {selectedCategory ? (
+              {searchResults ? (
+                <motion.div
+                  key="search-results"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <SearchResults
+                    results={searchResults}
+                    onSelectIndustry={handleSelectIndustry}
+                    onSelectCategory={handleSelectCategory}
+                  />
+                </motion.div>
+              ) : selectedCategory ? (
                 <motion.div
                   key="category-details"
                   initial={{ opacity: 0, y: 20 }}

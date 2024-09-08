@@ -15,14 +15,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-const TaskBar = ({ onToggleSidebar }) => {
+const TaskBar = ({ onToggleSidebar, onSearch }) => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearch = (e) => {
     e.preventDefault();
-    console.log('Searching for:', searchQuery);
-    // Implement search functionality here
+    onSearch(searchQuery);
   };
 
   return (
@@ -42,7 +41,7 @@ const TaskBar = ({ onToggleSidebar }) => {
         <form onSubmit={handleSearch} className="hidden md:flex items-center">
           <Input
             type="text"
-            placeholder="Search..."
+            placeholder="Search industries or categories..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="mr-2"
