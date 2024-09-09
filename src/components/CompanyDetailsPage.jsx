@@ -30,7 +30,7 @@ const CompanyDetailsPage = () => {
   const displayCompany = company || placeholderCompany;
 
   const handleBack = () => {
-    navigate('/');
+    navigate(`/?industry=${encodeURIComponent(industryName)}`);
   };
 
   return (
