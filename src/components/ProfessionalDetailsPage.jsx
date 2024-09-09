@@ -32,7 +32,7 @@ const ProfessionalDetailsPage = () => {
   const displayProfessional = professional || placeholderProfessional;
 
   const handleBack = () => {
-    navigate(`/?industry=${encodeURIComponent(industryName)}`);
+    navigate('/');
   };
 
   return (
