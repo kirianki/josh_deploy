@@ -30,7 +30,7 @@ const CompanyDetailsPage = () => {
   const displayCompany = company || placeholderCompany;
 
   const handleBack = () => {
-    navigate(`/${industryName}/${categoryName}`);
+    navigate(`/${industryName}`);
   };
 
   return (
@@ -45,7 +45,7 @@ const CompanyDetailsPage = () => {
           </CardTitle>
         </CardHeader>
         <CardContent className="p-6">
-          <p className="text-lg mb-4">{displayCompany.description}</p>
+          <p className="mb-4 text-gray-700">{displayCompany.description}</p>
           <div className="grid grid-cols-2 gap-4">
             <div className="flex items-center">
               <Globe className="mr-2 h-4 w-4 text-gray-500" />
