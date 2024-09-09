@@ -18,7 +18,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const Index = () => {
   const location = useLocation();
-  const [selectedIndustry, setSelectedIndustry] = useState(industriesData.industries[0].name);
+  const [selectedIndustry, setSelectedIndustry] = useState(industriesData.industries[0]?.name || '');
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showWelcome, setShowWelcome] = useState(true);
@@ -129,7 +129,7 @@ const Index = () => {
                 >
                   <CategoryDetails category={selectedCategory} onBack={() => setSelectedCategory(null)} />
                 </motion.div>
-              ) : (
+              ) : selectedIndustryData ? (
                 <motion.div
                   key="category-widgets"
                   initial={{ opacity: 0, y: 20 }}
@@ -145,6 +145,16 @@ const Index = () => {
                       onSelect={handleSelectCategory}
                     />
                   ))}
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="no-industry"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <p className="text-center text-gray-600 dark:text-gray-400">No industry selected. Please choose an industry from the sidebar.</p>
                 </motion.div>
               )}
             </AnimatePresence>
