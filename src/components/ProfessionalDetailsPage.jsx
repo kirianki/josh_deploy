@@ -10,10 +10,9 @@ const ProfessionalDetailsPage = () => {
   const { industryName, categoryName, professionalName } = useParams();
   const navigate = useNavigate();
 
-  const professional = industriesData.industries
-    .find(i => i.name === industryName)
-    ?.categories.find(c => c.name === categoryName)
-    ?.professionals.find(prof => prof.name === professionalName);
+  const industry = industriesData.industries.find(i => i.name === industryName);
+  const category = industry?.categories.find(c => c.name === categoryName);
+  const professional = category?.professionals.find(prof => prof.name === professionalName);
 
   const placeholderProfessional = {
     name: professionalName || "Professional Name",
@@ -32,7 +31,12 @@ const ProfessionalDetailsPage = () => {
   const displayProfessional = professional || placeholderProfessional;
 
   const handleBack = () => {
-    navigate(`/?industry=${encodeURIComponent(industryName)}&category=${encodeURIComponent(categoryName)}`);
+    navigate('/', { 
+      state: { 
+        selectedIndustry: industryName, 
+        selectedCategory: category 
+      } 
+    });
   };
 
   return (

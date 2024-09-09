@@ -10,10 +10,9 @@ const CompanyDetailsPage = () => {
   const { industryName, categoryName, companyName } = useParams();
   const navigate = useNavigate();
 
-  const company = industriesData.industries
-    .find(i => i.name === industryName)
-    ?.categories.find(c => c.name === categoryName)
-    ?.companies.find(comp => comp.name === companyName);
+  const industry = industriesData.industries.find(i => i.name === industryName);
+  const category = industry?.categories.find(c => c.name === categoryName);
+  const company = category?.companies.find(comp => comp.name === companyName);
 
   const placeholderCompany = {
     name: companyName || "Company Name",
@@ -30,7 +29,12 @@ const CompanyDetailsPage = () => {
   const displayCompany = company || placeholderCompany;
 
   const handleBack = () => {
-    navigate(`/?industry=${encodeURIComponent(industryName)}&category=${encodeURIComponent(categoryName)}`);
+    navigate('/', { 
+      state: { 
+        selectedIndustry: industryName, 
+        selectedCategory: category 
+      } 
+    });
   };
 
   return (
