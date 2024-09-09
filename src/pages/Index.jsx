@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import CategoryWidget from '../components/CategoryWidget';
 import TaskBar from '../components/TaskBar';
@@ -17,20 +16,12 @@ import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Index = () => {
-  const location = useLocation();
   const [selectedIndustry, setSelectedIndustry] = useState(industriesData.industries[0].name);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showWelcome, setShowWelcome] = useState(true);
   const [showIndustryModal, setShowIndustryModal] = useState(false);
   const [searchResults, setSearchResults] = useState(null);
-
-  useEffect(() => {
-    if (location.state) {
-      setSelectedIndustry(location.state.selectedIndustry);
-      setSelectedCategory(location.state.selectedCategory);
-    }
-  }, [location]);
 
   const handleSelectIndustry = (industryName) => {
     setSelectedIndustry(industryName);
