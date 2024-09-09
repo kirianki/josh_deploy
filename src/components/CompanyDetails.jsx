@@ -16,19 +16,19 @@ const CompanyDetails = ({ company }) => {
         <div className="grid grid-cols-2 gap-4">
           <div className="flex items-center">
             <Calendar className="mr-2 h-4 w-4 text-gray-500" />
-            <span className="text-sm">Founded: {company.founded || '2010'}</span>
+            <span className="text-sm">Founded: {company.founded}</span>
           </div>
           <div className="flex items-center">
             <Users className="mr-2 h-4 w-4 text-gray-500" />
-            <span className="text-sm">Employees: {company.employees || '100-500'}</span>
+            <span className="text-sm">Employees: {company.employees}</span>
           </div>
           <div className="flex items-center">
-            <Badge variant="outline">{company.industry || 'Technology'}</Badge>
+            <Badge variant="outline">{company.industry}</Badge>
           </div>
           <div className="flex items-center">
             <Globe className="mr-2 h-4 w-4 text-gray-500" />
-            <a href={company.website || '#'} className="text-sm text-blue-500 hover:underline">
-              {company.website || 'www.company-website.com'}
+            <a href={company.website} className="text-sm text-blue-500 hover:underline">
+              {company.website}
             </a>
           </div>
         </div>

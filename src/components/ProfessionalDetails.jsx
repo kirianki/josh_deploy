@@ -13,24 +13,24 @@ const ProfessionalDetails = ({ professional }) => {
         <Badge variant="secondary">{professional.title}</Badge>
       </CardHeader>
       <CardContent className="p-6">
-        <p className="mb-4 text-gray-700">{professional.bio || 'A seasoned professional with years of experience in the industry.'}</p>
+        <p className="mb-4 text-gray-700">{professional.bio}</p>
         <div className="grid grid-cols-2 gap-4">
           <div className="flex items-center">
             <Briefcase className="mr-2 h-4 w-4 text-gray-500" />
-            <span className="text-sm">Experience: {professional.experience || '10+ years'}</span>
+            <span className="text-sm">Experience: {professional.experience}</span>
           </div>
           <div className="flex items-center">
             <GraduationCap className="mr-2 h-4 w-4 text-gray-500" />
-            <span className="text-sm">Education: {professional.education || 'Master\'s Degree'}</span>
+            <span className="text-sm">Education: {professional.education}</span>
           </div>
           <div className="flex items-center">
             <Award className="mr-2 h-4 w-4 text-gray-500" />
-            <span className="text-sm">Skills: {professional.skills || 'Leadership, Project Management'}</span>
+            <span className="text-sm">Skills: {professional.skills}</span>
           </div>
           <div className="flex items-center">
             <Linkedin className="mr-2 h-4 w-4 text-gray-500" />
-            <a href={professional.linkedin || '#'} className="text-sm text-blue-500 hover:underline">
-              {professional.linkedin || 'linkedin.com/in/professional'}
+            <a href={professional.linkedin} className="text-sm text-blue-500 hover:underline">
+              LinkedIn Profile
             </a>
           </div>
         </div>
