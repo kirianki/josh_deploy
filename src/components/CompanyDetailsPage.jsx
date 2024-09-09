@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Building2, Globe, Users, Calendar } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,8 +8,6 @@ import { industriesData } from '../data/industriesData';
 
 const CompanyDetailsPage = () => {
   const { industryName, categoryName, companyName } = useParams();
-  const navigate = useNavigate();
-
   const company = industriesData.industries
     .find(i => i.name === industryName)
     ?.categories.find(c => c.name === categoryName)
@@ -29,15 +27,13 @@ const CompanyDetailsPage = () => {
 
   const displayCompany = company || placeholderCompany;
 
-  const handleBack = () => {
-    navigate(`/${industryName}/${categoryName}`);
-  };
-
   return (
     <div className="container mx-auto p-4">
-      <Button variant="ghost" className="mb-4" onClick={handleBack}>
-        <ArrowLeft className="mr-2 h-4 w-4" /> Back to Category
-      </Button>
+      <Link to={`/${industryName}/${categoryName}`}>
+        <Button variant="ghost" className="mb-4">
+          <ArrowLeft className="mr-2 h-4 w-4" /> Back to Category
+        </Button>
+      </Link>
       <Card className="mb-8">
         <CardHeader className="bg-gradient-to-r from-blue-500 to-purple-600 text-white">
           <CardTitle className="flex items-center text-2xl">
