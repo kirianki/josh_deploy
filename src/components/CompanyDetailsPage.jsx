@@ -13,9 +13,19 @@ const CompanyDetailsPage = () => {
     ?.categories.find(c => c.name === categoryName)
     ?.companies.find(comp => comp.name === companyName);
 
-  if (!company) {
-    return <div>Company not found</div>;
-  }
+  const placeholderCompany = {
+    name: companyName || "Company Name",
+    description: "A leading company in its field, providing innovative solutions.",
+    website: "https://www.example.com",
+    employees: "100-500",
+    founded: "2000",
+    services: [
+      { name: "Service 1", description: "Description of Service 1" },
+      { name: "Service 2", description: "Description of Service 2" },
+    ]
+  };
+
+  const displayCompany = company || placeholderCompany;
 
   return (
     <div className="container mx-auto p-4">
@@ -27,30 +37,30 @@ const CompanyDetailsPage = () => {
       <Card className="mb-8">
         <CardHeader className="bg-gradient-to-r from-blue-500 to-purple-600 text-white">
           <CardTitle className="flex items-center text-2xl">
-            <Building2 className="mr-2" /> {company.name}
+            <Building2 className="mr-2" /> {displayCompany.name}
           </CardTitle>
         </CardHeader>
         <CardContent className="p-6">
-          <p className="text-lg mb-4">{company.description}</p>
+          <p className="text-lg mb-4">{displayCompany.description}</p>
           <div className="grid grid-cols-2 gap-4">
             <div className="flex items-center">
               <Globe className="mr-2 h-4 w-4 text-gray-500" />
-              <span>Website: <a href={company.website} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">{company.website}</a></span>
+              <span>Website: <a href={displayCompany.website} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">{displayCompany.website}</a></span>
             </div>
             <div className="flex items-center">
               <Users className="mr-2 h-4 w-4 text-gray-500" />
-              <span>Employees: {company.employees}</span>
+              <span>Employees: {displayCompany.employees}</span>
             </div>
             <div className="flex items-center">
               <Calendar className="mr-2 h-4 w-4 text-gray-500" />
-              <span>Founded: {company.founded}</span>
+              <span>Founded: {displayCompany.founded}</span>
             </div>
           </div>
         </CardContent>
       </Card>
       <h2 className="text-2xl font-bold mb-4">Services Offered</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {company.services.map((service, index) => (
+        {displayCompany.services.map((service, index) => (
           <Card key={index}>
             <CardContent className="p-4">
               <h3 className="font-bold mb-2">{service.name}</h3>
