@@ -32,13 +32,13 @@ const ProfessionalDetailsPage = () => {
   const displayProfessional = professional || placeholderProfessional;
 
   const handleBack = () => {
-    navigate(`/${industryName}`);
+    navigate('/');
   };
 
   return (
     <div className="container mx-auto p-4">
       <Button variant="ghost" className="mb-4" onClick={handleBack}>
-        <ArrowLeft className="mr-2 h-4 w-4" /> Back to Category
+        <ArrowLeft className="mr-2 h-4 w-4" /> Back to Categories
       </Button>
       <Card className="mb-8">
         <CardHeader className="bg-gradient-to-r from-green-500 to-teal-600 text-white">
