@@ -37,13 +37,13 @@ const WelcomeCarousel = ({ onClose }) => {
             {slides.map((slide, index) => (
               <CarouselItem key={index}>
                 <Card className="border-0 overflow-hidden bg-transparent shadow-2xl">
-                  <CardContent className="flex flex-col md:flex-row items-center p-6 bg-gradient-to-r from-gray-800 to-gray-700 text-gray-100 rounded-lg">
+                  <CardContent className="flex flex-col md:flex-row items-center p-6 bg-gradient-to-r from-gray-800 to-gray-700 text-beige-100 rounded-lg">
                     <img src={slide.image} alt={slide.title} className="w-full md:w-1/2 h-48 md:h-64 object-cover mb-4 md:mb-0 md:mr-6 rounded-md opacity-80" />
                     <div className="md:w-1/2">
-                      <h2 className="text-3xl font-bold mb-4 text-gray-200">{slide.title}</h2>
-                      <p className="text-xl mb-6 text-gray-300">{slide.description}</p>
+                      <h2 className="text-3xl font-bold mb-4 text-beige-200">{slide.title}</h2>
+                      <p className="text-xl mb-6 text-beige-300">{slide.description}</p>
                       {index === slides.length - 1 && (
-                        <Button onClick={onClose} variant="secondary" size="lg" className="bg-gray-600 hover:bg-gray-500 text-gray-100 transition-colors">
+                        <Button onClick={onClose} variant="secondary" size="lg" className="bg-beige-200 hover:bg-beige-300 text-gray-800 transition-colors">
                           Start Exploring
                         </Button>
                       )}
@@ -53,8 +53,8 @@ const WelcomeCarousel = ({ onClose }) => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-700 text-gray-200 hover:bg-gray-600" />
-          <CarouselNext className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-700 text-gray-200 hover:bg-gray-600" />
+          <CarouselPrevious className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-beige-200 text-gray-800 hover:bg-beige-300" />
+          <CarouselNext className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-beige-200 text-gray-800 hover:bg-beige-300" />
         </Carousel>
       </motion.div>
     </AnimatePresence>

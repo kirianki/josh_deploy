@@ -12,20 +12,20 @@ const HeroSection = ({ onGetStarted }) => {
     >
       <div className="max-w-4xl mx-auto text-center relative z-10">
         <motion.h1 
-          className="text-4xl md:text-6xl font-bold mb-4 text-gray-800 dark:text-gray-200"
+          className="text-4xl md:text-6xl font-bold mb-4 text-gray-800 dark:text-beige-200"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.5 }}
         >
-          Discover Future-Ready Services
+          Navigate the Future of Industry
         </motion.h1>
         <motion.p 
-          className="text-xl md:text-2xl mb-8 text-gray-600 dark:text-gray-400"
+          className="text-xl md:text-2xl mb-8 text-gray-600 dark:text-beige-300"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.5 }}
         >
-          Connect with innovative companies and professionals shaping tomorrow's industries
+          Connect with innovative companies and professionals shaping tomorrow's landscape
         </motion.p>
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -37,7 +37,7 @@ const HeroSection = ({ onGetStarted }) => {
           </Button>
         </motion.div>
       </div>
-      <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 opacity-50"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-beige-200 via-beige-300 to-beige-200 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 opacity-50"></div>
       <div className="absolute inset-0 bg-[url('/placeholder.svg')] bg-cover bg-center opacity-10"></div>
     </motion.div>
   );
