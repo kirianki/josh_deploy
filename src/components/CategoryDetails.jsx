@@ -58,19 +58,22 @@ const CategoryDetails = ({ category, onBack }) => {
             <TabsContent value="professionals" className="p-4">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {category.professionals.map((professional) => (
-                  <Card
+                  <Link
                     key={professional.name}
-                    className="bg-gray-50 dark:bg-gray-800 cursor-pointer hover:shadow-md transition-shadow"
+                    to={`/industry/${industryName}/category/${category.name}/professional/${professional.name}`}
+                    className="block"
                   >
-                    <CardContent className="p-4">
-                      <h4 className="font-bold flex items-center text-sm md:text-base">
-                        <User className="mr-2 h-4 w-4" /> {professional.name}
-                      </h4>
-                      <Badge variant="secondary" className="mt-2 text-xs md:text-sm">
-                        {professional.title}
-                      </Badge>
-                    </CardContent>
-                  </Card>
+                    <Card className="bg-gray-50 dark:bg-gray-800 cursor-pointer hover:shadow-md transition-shadow">
+                      <CardContent className="p-4">
+                        <h4 className="font-bold flex items-center text-sm md:text-base">
+                          <User className="mr-2 h-4 w-4" /> {professional.name}
+                        </h4>
+                        <Badge variant="secondary" className="mt-2 text-xs md:text-sm">
+                          {professional.title}
+                        </Badge>
+                      </CardContent>
+                    </Card>
+                  </Link>
                 ))}
               </div>
             </TabsContent>

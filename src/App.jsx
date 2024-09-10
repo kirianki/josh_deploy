@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import Index from "./pages/Index";
 import CompanyDetailsPage from "./pages/CompanyDetailsPage";
+import ProfessionalDetailsPage from "./pages/ProfessionalDetailsPage";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +19,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/industry/:industryName/category/:categoryName" element={<Index />} />
             <Route path="/industry/:industryName/category/:categoryName/company/:companyName" element={<CompanyDetailsPage />} />
+            <Route path="/industry/:industryName/category/:categoryName/professional/:professionalName" element={<ProfessionalDetailsPage />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>
