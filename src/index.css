@@ -5,25 +5,25 @@
 @layer base {
   :root {
     --background: 30 30% 96%;
-    --foreground: 200 19% 18%;
+    --foreground: 220 20% 20%;
 
     --card: 30 30% 98%;
-    --card-foreground: 200 19% 18%;
+    --card-foreground: 220 20% 20%;
  
     --popover: 30 30% 96%;
-    --popover-foreground: 200 19% 18%;
+    --popover-foreground: 220 20% 20%;
  
-    --primary: 200 19% 18%;
+    --primary: 220 20% 20%;
     --primary-foreground: 30 30% 96%;
  
     --secondary: 30 30% 92%;
-    --secondary-foreground: 200 19% 18%;
+    --secondary-foreground: 220 20% 20%;
  
     --muted: 30 30% 92%;
-    --muted-foreground: 200 19% 40%;
+    --muted-foreground: 220 20% 40%;
  
     --accent: 30 30% 88%;
-    --accent-foreground: 200 19% 18%;
+    --accent-foreground: 220 20% 20%;
  
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 30 30% 96%;
@@ -36,33 +36,33 @@
   }
  
   .dark {
-    --background: 200 19% 18%;
+    --background: 220 20% 18%;
     --foreground: 30 30% 96%;
  
-    --card: 200 19% 20%;
+    --card: 220 20% 20%;
     --card-foreground: 30 30% 96%;
  
-    --popover: 200 19% 20%;
+    --popover: 220 20% 20%;
     --popover-foreground: 30 30% 96%;
  
     --primary: 30 30% 88%;
-    --primary-foreground: 200 19% 20%;
+    --primary-foreground: 220 20% 20%;
  
-    --secondary: 200 19% 25%;
+    --secondary: 220 20% 25%;
     --secondary-foreground: 30 30% 96%;
  
-    --muted: 200 19% 25%;
+    --muted: 220 20% 25%;
     --muted-foreground: 30 30% 70%;
  
-    --accent: 200 19% 30%;
+    --accent: 220 20% 30%;
     --accent-foreground: 30 30% 96%;
  
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 30 30% 96%;
  
-    --border: 200 19% 30%;
-    --input: 200 19% 30%;
-    --ring: 200 19% 35%;
+    --border: 220 20% 30%;
+    --input: 220 20% 30%;
+    --ring: 220 20% 35%;
   }
 }
  
@@ -78,12 +78,12 @@
 
 @layer utilities {
   .futuristic-gradient {
-    @apply bg-gradient-to-r from-beige-100 via-beige-200 to-beige-100 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800;
+    @apply bg-gradient-to-r from-warm-100 via-warm-200 to-warm-100 dark:from-cool-800 dark:via-cool-700 dark:to-cool-800;
   }
   .futuristic-card {
-    @apply bg-beige-50 dark:bg-gray-800 shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden border border-beige-200 dark:border-gray-700;
+    @apply bg-warm-50 dark:bg-cool-800 shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden border border-warm-200 dark:border-cool-700;
   }
   .futuristic-button {
-    @apply bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-800 hover:to-gray-900 text-beige-100 font-semibold py-2 px-4 rounded-md transition-all duration-300 shadow-md hover:shadow-lg;
+    @apply bg-gradient-to-r from-cool-700 to-cool-800 hover:from-cool-800 hover:to-cool-900 text-warm-100 font-semibold py-2 px-4 rounded-md transition-all duration-300 shadow-md hover:shadow-lg;
   }
 }
