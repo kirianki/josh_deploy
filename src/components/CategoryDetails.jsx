@@ -20,10 +20,10 @@ const CategoryDetails = ({ category, onBack }) => {
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.3 }}
     >
-      <Card className="mb-4 overflow-hidden">
-        <CardHeader className="flex flex-col md:flex-row items-start md:items-center justify-between bg-gradient-to-r from-gray-300 to-gray-400 text-gray-800">
+      <Card className="mb-4 overflow-hidden bg-gray-100 border-gray-200">
+        <CardHeader className="flex flex-col md:flex-row items-start md:items-center justify-between bg-gradient-to-r from-gray-200 to-gray-300 text-gray-700">
           <div>
-            <Button variant="ghost" size="sm" onClick={onBack} className="mb-2 text-gray-800 hover:text-gray-600">
+            <Button variant="ghost" size="sm" onClick={onBack} className="mb-2 text-gray-600 hover:text-gray-800">
               <ArrowLeft className="mr-2 h-4 w-4" /> Back to Categories
             </Button>
             <CardTitle className="text-xl md:text-2xl">{category.name}</CardTitle>
@@ -31,9 +31,9 @@ const CategoryDetails = ({ category, onBack }) => {
         </CardHeader>
         <CardContent className="p-0">
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="w-full">
-              <TabsTrigger value="companies" className="flex-1">Companies</TabsTrigger>
-              <TabsTrigger value="professionals" className="flex-1">Professionals</TabsTrigger>
+            <TabsList className="w-full bg-gray-200">
+              <TabsTrigger value="companies" className="flex-1 text-gray-700">Companies</TabsTrigger>
+              <TabsTrigger value="professionals" className="flex-1 text-gray-700">Professionals</TabsTrigger>
             </TabsList>
             <TabsContent value="companies" className="p-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -43,12 +43,12 @@ const CategoryDetails = ({ category, onBack }) => {
                     to={`/industry/${industryName}/category/${category.name}/company/${company.name}`}
                     className="block"
                   >
-                    <Card className="bg-gray-50 dark:bg-gray-800 cursor-pointer hover:shadow-md transition-shadow">
+                    <Card className="bg-gray-50 cursor-pointer hover:shadow-md transition-shadow">
                       <CardContent className="p-4">
-                        <h4 className="font-bold flex items-center text-sm md:text-base">
+                        <h4 className="font-bold flex items-center text-sm md:text-base text-gray-700">
                           <Building2 className="mr-2 h-4 w-4" /> {company.name}
                         </h4>
-                        <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400 mt-2">{company.description}</p>
+                        <p className="text-xs md:text-sm text-gray-600 mt-2">{company.description}</p>
                       </CardContent>
                     </Card>
                   </Link>
@@ -63,12 +63,12 @@ const CategoryDetails = ({ category, onBack }) => {
                     to={`/industry/${industryName}/category/${category.name}/professional/${professional.name}`}
                     className="block"
                   >
-                    <Card className="bg-gray-50 dark:bg-gray-800 cursor-pointer hover:shadow-md transition-shadow">
+                    <Card className="bg-gray-50 cursor-pointer hover:shadow-md transition-shadow">
                       <CardContent className="p-4">
-                        <h4 className="font-bold flex items-center text-sm md:text-base">
+                        <h4 className="font-bold flex items-center text-sm md:text-base text-gray-700">
                           <User className="mr-2 h-4 w-4" /> {professional.name}
                         </h4>
-                        <Badge variant="secondary" className="mt-2 text-xs md:text-sm">
+                        <Badge variant="secondary" className="mt-2 text-xs md:text-sm bg-gray-200 text-gray-700">
                           {professional.title}
                         </Badge>
                       </CardContent>

@@ -12,7 +12,7 @@ const HeroSection = ({ onGetStarted }) => {
     >
       <div className="max-w-4xl mx-auto text-center relative z-10">
         <motion.h1 
-          className="text-4xl md:text-6xl font-bold mb-4"
+          className="text-4xl md:text-6xl font-bold mb-4 text-gray-700"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.5 }}
@@ -20,7 +20,7 @@ const HeroSection = ({ onGetStarted }) => {
           Find Services in Your Industry
         </motion.h1>
         <motion.p 
-          className="text-xl md:text-2xl mb-8"
+          className="text-xl md:text-2xl mb-8 text-gray-600"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.5 }}
@@ -32,7 +32,7 @@ const HeroSection = ({ onGetStarted }) => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.6, duration: 0.5 }}
         >
-          <Button size="lg" variant="secondary" onClick={onGetStarted}>
+          <Button size="lg" variant="secondary" onClick={onGetStarted} className="bg-gray-700 text-white hover:bg-gray-600">
             Explore Services
           </Button>
         </motion.div>
