@@ -11,19 +11,19 @@ const CategoryWidget = ({ category, onSelect }) => {
       whileTap={{ scale: 0.95 }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
     >
-      <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl h-full flex flex-col bg-gray-100 border-gray-200">
-        <CardHeader className="bg-gradient-to-r from-gray-200 to-gray-300 text-gray-700 p-4 md:p-6">
-          <CardTitle className="text-lg md:text-xl">{category.name}</CardTitle>
+      <Card className="futuristic-card h-full flex flex-col">
+        <CardHeader className="futuristic-gradient p-4 md:p-6">
+          <CardTitle className="text-lg md:text-xl text-gray-800 dark:text-gray-200">{category.name}</CardTitle>
         </CardHeader>
         <CardContent className="p-4 md:p-6 flex-grow flex flex-col justify-between">
-          <p className="text-sm md:text-base text-gray-600 mb-4">
+          <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 mb-4">
             {`${category.companies.length} companies • ${category.professionals.length} professionals`}
           </p>
           <Button 
-            className="w-full flex items-center justify-center text-sm md:text-base mt-auto bg-gray-600 text-white hover:bg-gray-500" 
+            className="futuristic-button w-full flex items-center justify-center text-sm md:text-base mt-auto" 
             onClick={() => onSelect(category)}
           >
-            View Details
+            Explore Future
             <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </CardContent>

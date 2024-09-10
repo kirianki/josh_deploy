@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { User, Briefcase, GraduationCap, Award, Linkedin, ArrowLeft } from 'lucide-react';
 import { industriesData } from '../data/industriesData';
+import { motion } from "framer-motion";
 
 const ProfessionalDetailsPage = () => {
   const { industryName, categoryName, professionalName } = useParams();
@@ -19,44 +20,50 @@ const ProfessionalDetailsPage = () => {
   }
 
   return (
-    <div className="container mx-auto p-4">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.3 }}
+      className="container mx-auto p-4"
+    >
       <Link to={`/industry/${industryName}/category/${categoryName}`}>
-        <Button variant="ghost" className="mb-4 text-gray-600 hover:text-gray-800">
+        <Button variant="ghost" className="mb-4 text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200">
           <ArrowLeft className="mr-2 h-4 w-4" /> Back to Category
         </Button>
       </Link>
-      <Card className="overflow-hidden bg-gray-100 border-gray-200">
-        <CardHeader className="bg-gradient-to-r from-gray-300 to-gray-400 text-gray-800">
-          <CardTitle className="flex items-center text-2xl">
+      <Card className="futuristic-card overflow-hidden">
+        <CardHeader className="futuristic-gradient">
+          <CardTitle className="flex items-center text-2xl text-gray-800 dark:text-gray-200">
             <User className="mr-2" /> {professional.name}
           </CardTitle>
-          <Badge variant="secondary" className="bg-gray-200 text-gray-700">{professional.title}</Badge>
+          <Badge variant="secondary" className="bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300">{professional.title}</Badge>
         </CardHeader>
         <CardContent className="p-6">
-          <p className="mb-4 text-gray-700">{professional.bio || 'A seasoned professional with years of experience in the industry.'}</p>
+          <p className="mb-4 text-gray-700 dark:text-gray-300">{professional.bio || 'A seasoned professional with years of experience in the industry.'}</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="flex items-center">
-              <Briefcase className="mr-2 h-4 w-4 text-gray-500" />
-              <span className="text-sm text-gray-600">Experience: {professional.experience || 'N/A'}</span>
+              <Briefcase className="mr-2 h-4 w-4 text-gray-500 dark:text-gray-400" />
+              <span className="text-sm text-gray-600 dark:text-gray-400">Experience: {professional.experience || 'N/A'}</span>
             </div>
             <div className="flex items-center">
-              <GraduationCap className="mr-2 h-4 w-4 text-gray-500" />
-              <span className="text-sm text-gray-600">Education: {professional.education || 'N/A'}</span>
+              <GraduationCap className="mr-2 h-4 w-4 text-gray-500 dark:text-gray-400" />
+              <span className="text-sm text-gray-600 dark:text-gray-400">Education: {professional.education || 'N/A'}</span>
             </div>
             <div className="flex items-center">
-              <Award className="mr-2 h-4 w-4 text-gray-500" />
-              <span className="text-sm text-gray-600">Skills: {professional.skills || 'N/A'}</span>
+              <Award className="mr-2 h-4 w-4 text-gray-500 dark:text-gray-400" />
+              <span className="text-sm text-gray-600 dark:text-gray-400">Skills: {professional.skills || 'N/A'}</span>
             </div>
             <div className="flex items-center">
-              <Linkedin className="mr-2 h-4 w-4 text-gray-500" />
-              <a href={professional.linkedin || '#'} className="text-sm text-gray-600 hover:text-gray-800 hover:underline">
+              <Linkedin className="mr-2 h-4 w-4 text-gray-500 dark:text-gray-400" />
+              <a href={professional.linkedin || '#'} className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:underline">
                 {professional.linkedin || 'LinkedIn Profile'}
               </a>
             </div>
           </div>
         </CardContent>
       </Card>
-    </div>
+    </motion.div>
   );
 };
 
