@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import CategoryWidget from '../components/CategoryWidget';
 import TaskBar from '../components/TaskBar';
@@ -16,23 +17,38 @@ import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Index = () => {
-  const [selectedIndustry, setSelectedIndustry] = useState(industriesData.industries[0].name);
+  const { industryName, categoryName } = useParams();
+  const navigate = useNavigate();
+  const [selectedIndustry, setSelectedIndustry] = useState(industryName || industriesData.industries[0].name);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [showWelcome, setShowWelcome] = useState(true);
+  const [showWelcome, setShowWelcome] = useState(!industryName && !categoryName);
   const [showIndustryModal, setShowIndustryModal] = useState(false);
   const [searchResults, setSearchResults] = useState(null);
+
+  useEffect(() => {
+    if (industryName && categoryName) {
+      const industry = industriesData.industries.find(i => i.name === industryName);
+      const category = industry?.categories.find(c => c.name === categoryName);
+      if (category) {
+        setSelectedIndustry(industryName);
+        setSelectedCategory(category);
+      }
+    }
+  }, [industryName, categoryName]);
 
   const handleSelectIndustry = (industryName) => {
     setSelectedIndustry(industryName);
     setSelectedCategory(null);
     setSidebarOpen(false);
     setSearchResults(null);
+    navigate('/');
   };
 
   const handleSelectCategory = (category) => {
     setSelectedCategory(category);
     setSearchResults(null);
+    navigate(`/industry/${selectedIndustry}/category/${category.name}`);
   };
 
   const handleGetStarted = () => {
@@ -88,7 +104,7 @@ const Index = () => {
         </div>
         <div className="flex-1 overflow-y-auto">
           <div className="p-4 md:p-8">
-            <HeroSection onGetStarted={handleGetStarted} />
+            {!selectedCategory && <HeroSection onGetStarted={handleGetStarted} />}
             <Card className="mb-6 bg-white dark:bg-gray-800 shadow-lg">
               <CardContent className="p-4 md:p-6">
                 <h1 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-200">{selectedIndustry}</h1>
@@ -118,7 +134,10 @@ const Index = () => {
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <CategoryDetails category={selectedCategory} onBack={() => setSelectedCategory(null)} />
+                  <CategoryDetails category={selectedCategory} onBack={() => {
+                    setSelectedCategory(null);
+                    navigate('/');
+                  }} />
                 </motion.div>
               ) : (
                 <motion.div
