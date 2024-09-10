@@ -8,7 +8,7 @@ const HeroSection = ({ onGetStarted }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-20 px-4 md:px-8 rounded-lg shadow-xl mb-8 relative overflow-hidden"
+      className="bg-gradient-to-r from-gray-200 to-gray-300 text-gray-800 py-20 px-4 md:px-8 rounded-lg shadow-xl mb-8 relative overflow-hidden"
     >
       <div className="max-w-4xl mx-auto text-center relative z-10">
         <motion.h1 
@@ -37,7 +37,7 @@ const HeroSection = ({ onGetStarted }) => {
           </Button>
         </motion.div>
       </div>
-      <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-50"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-gray-200 to-gray-300 opacity-50"></div>
       <div className="absolute inset-0 bg-[url('/placeholder.svg')] bg-cover bg-center opacity-10"></div>
     </motion.div>
   );

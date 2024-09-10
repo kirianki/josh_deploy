@@ -21,9 +21,9 @@ const CategoryDetails = ({ category, onBack }) => {
       transition={{ duration: 0.3 }}
     >
       <Card className="mb-4 overflow-hidden">
-        <CardHeader className="flex flex-col md:flex-row items-start md:items-center justify-between bg-gradient-to-r from-blue-500 to-purple-600 text-white">
+        <CardHeader className="flex flex-col md:flex-row items-start md:items-center justify-between bg-gradient-to-r from-gray-300 to-gray-400 text-gray-800">
           <div>
-            <Button variant="ghost" size="sm" onClick={onBack} className="mb-2 text-white hover:text-gray-200">
+            <Button variant="ghost" size="sm" onClick={onBack} className="mb-2 text-gray-800 hover:text-gray-600">
               <ArrowLeft className="mr-2 h-4 w-4" /> Back to Categories
             </Button>
             <CardTitle className="text-xl md:text-2xl">{category.name}</CardTitle>

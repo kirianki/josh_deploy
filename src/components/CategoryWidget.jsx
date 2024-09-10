@@ -12,7 +12,7 @@ const CategoryWidget = ({ category, onSelect }) => {
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
     >
       <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl h-full flex flex-col">
-        <CardHeader className="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-4 md:p-6">
+        <CardHeader className="bg-gradient-to-r from-gray-300 to-gray-400 text-gray-800 p-4 md:p-6">
           <CardTitle className="text-lg md:text-xl">{category.name}</CardTitle>
         </CardHeader>
         <CardContent className="p-4 md:p-6 flex-grow flex flex-col justify-between">
