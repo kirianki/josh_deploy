@@ -15,7 +15,7 @@ export default defineConfig({
       input: "./index.html", // Entry point for building
     },
     // Add the base URL if needed
-    base: "/josh_deploy/", // Replace "sammy" with your actual repository name
+    base: "/josh_deploy/",
   },
   plugins: [react()],
   resolve: {
