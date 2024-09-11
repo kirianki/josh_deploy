@@ -11,9 +11,6 @@ import IndustrySelectionModal from '../components/IndustrySelectionModal';
 import SearchResults from '../components/SearchResults';
 import { industriesData } from '../data/industriesData';
 import { Card, CardContent } from "@/components/ui/card";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu } from 'lucide-react';
-import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Index = () => {
@@ -21,10 +18,22 @@ const Index = () => {
   const navigate = useNavigate();
   const [selectedIndustry, setSelectedIndustry] = useState(industryName || industriesData.industries[0].name);
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showWelcome, setShowWelcome] = useState(!industryName && !categoryName);
   const [showIndustryModal, setShowIndustryModal] = useState(false);
   const [searchResults, setSearchResults] = useState(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [showSidebar, setShowSidebar] = useState(isMobile);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      setShowSidebar(mobile);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     if (industryName && categoryName) {
@@ -40,15 +49,16 @@ const Index = () => {
   const handleSelectIndustry = (industryName) => {
     setSelectedIndustry(industryName);
     setSelectedCategory(null);
-    setSidebarOpen(false);
     setSearchResults(null);
     navigate('/');
+    if (isMobile) setShowSidebar(false);
   };
 
   const handleSelectCategory = (category) => {
     setSelectedCategory(category);
     setSearchResults(null);
     navigate(`/industry/${selectedIndustry}/category/${category.name}`);
+    if (isMobile) setShowSidebar(false);
   };
 
   const handleGetStarted = () => {
@@ -68,34 +78,30 @@ const Index = () => {
       });
     });
     setSearchResults(results);
+    if (isMobile) setShowSidebar(false);
   };
 
   const selectedIndustryData = industriesData.industries.find(
     (industry) => industry.name === selectedIndustry
   );
 
+  const toggleSidebar = () => {
+    setShowSidebar(!showSidebar);
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-warm-50 dark:bg-cool-900">
       {showWelcome && <WelcomeCarousel onClose={() => setShowWelcome(false)} />}
-      <TaskBar onSearch={handleSearch} onToggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
+      <TaskBar onSearch={handleSearch} onToggleSidebar={toggleSidebar} />
       <div className="flex flex-1 overflow-hidden">
-        <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
-          <SheetContent side="left" className="p-0 w-[250px]">
-            <Sidebar
-              industries={industriesData.industries}
-              selectedIndustry={selectedIndustry}
-              onSelectIndustry={handleSelectIndustry}
-            />
-          </SheetContent>
-        </Sheet>
-        <div className="hidden md:block">
+        <div className={`${showSidebar ? 'block' : 'hidden'} md:block w-full md:w-64 flex-shrink-0 overflow-y-auto`}>
           <Sidebar
             industries={industriesData.industries}
             selectedIndustry={selectedIndustry}
             onSelectIndustry={handleSelectIndustry}
           />
         </div>
-        <div className="flex-1 overflow-y-auto">
+        <div className={`flex-1 overflow-y-auto ${showSidebar && isMobile ? 'hidden' : 'block'}`}>
           <div className="p-4 md:p-8">
             {!selectedCategory && <HeroSection onGetStarted={handleGetStarted} />}
             <Card className="mb-6 bg-white dark:bg-cool-800 shadow-lg">

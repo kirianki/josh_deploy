@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Bell, User, Search, Menu } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
-import AuthModal from './AuthModal';
 import NotificationDropdown from './NotificationDropdown';
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,43 +13,34 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-const TaskBar = ({ onToggleSidebar, onSearch }) => {
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-
+const TaskBar = ({ onSearch, onToggleSidebar }) => {
   const handleSearch = (e) => {
     e.preventDefault();
-    onSearch(searchQuery);
+    onSearch(e.target.elements.searchQuery.value);
   };
 
   return (
     <div className="bg-background text-foreground shadow-md p-4 flex justify-between items-center">
       <div className="flex items-center">
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="md:hidden mr-2">
-              <Menu className="h-5 w-5" />
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="left" className="p-0">
-            {/* Sidebar content goes here */}
-          </SheetContent>
-        </Sheet>
-        <div className="text-xl font-bold mr-4">Industry Navigator</div>
-        <form onSubmit={handleSearch} className="hidden md:flex items-center">
+        <Button variant="ghost" size="icon" className="mr-2 md:hidden" onClick={onToggleSidebar}>
+          <Menu className="h-5 w-5" />
+        </Button>
+        <div className="text-xl font-bold mr-4 hidden md:block">Industry Navigator</div>
+      </div>
+      <form onSubmit={handleSearch} className="flex-grow max-w-md mx-4">
+        <div className="relative">
           <Input
             type="text"
+            name="searchQuery"
             placeholder="Search industries or categories..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="mr-2"
+            className="w-full pr-10"
           />
-          <Button type="submit" size="icon" variant="ghost">
+          <Button type="submit" size="icon" variant="ghost" className="absolute right-0 top-0 h-full">
             <Search className="h-5 w-5" />
           </Button>
-        </form>
-      </div>
-      <div className="flex items-center space-x-2 md:space-x-4">
+        </div>
+      </form>
+      <div className="flex items-center space-x-2">
         <ThemeToggle />
         <NotificationDropdown />
         <DropdownMenu>
@@ -63,13 +52,12 @@ const TaskBar = ({ onToggleSidebar, onSearch }) => {
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={() => setIsAuthModalOpen(true)}>Profile</DropdownMenuItem>
+            <DropdownMenuItem>Profile</DropdownMenuItem>
             <DropdownMenuItem>Settings</DropdownMenuItem>
             <DropdownMenuItem>Log out</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
     </div>
   );
 };
