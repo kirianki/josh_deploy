@@ -9,6 +9,14 @@ export default defineConfig({
     host: "::",
     port: "8080",
   },
+  build: {
+    outDir: "dist", // Output directory for built files (optional)
+    rollupOptions: {
+      input: "./index.html", // Entry point for building
+    },
+    // Add the base URL if needed
+    base: "/josh_deploy/", // Replace "sammy" with your actual repository name
+  },
   plugins: [react()],
   resolve: {
     alias: [
