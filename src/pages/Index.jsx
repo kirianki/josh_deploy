@@ -11,7 +11,10 @@ import IndustrySelectionModal from '../components/IndustrySelectionModal';
 import SearchResults from '../components/SearchResults';
 import { industriesData } from '../data/industriesData';
 import { Card, CardContent } from "@/components/ui/card";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Menu } from "lucide-react";
 
 const Index = () => {
   const { industryName, categoryName } = useParams();
@@ -22,16 +25,17 @@ const Index = () => {
   const [showIndustryModal, setShowIndustryModal] = useState(false);
   const [searchResults, setSearchResults] = useState(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-  const [showSidebar, setShowSidebar] = useState(isMobile);
+  const [showSidebar, setShowSidebar] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
       const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
-      setShowSidebar(mobile);
+      setShowSidebar(!mobile);
     };
 
     window.addEventListener('resize', handleResize);
+    handleResize();
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
@@ -89,21 +93,38 @@ const Index = () => {
     setShowSidebar(!showSidebar);
   };
 
+  const renderSidebar = () => (
+    <Sidebar
+      industries={industriesData.industries}
+      selectedIndustry={selectedIndustry}
+      onSelectIndustry={handleSelectIndustry}
+    />
+  );
+
   return (
     <div className="flex flex-col min-h-screen bg-warm-50 dark:bg-cool-900">
       {showWelcome && <WelcomeCarousel onClose={() => setShowWelcome(false)} />}
       <TaskBar onSearch={handleSearch} onToggleSidebar={toggleSidebar} />
       <div className="flex flex-1 overflow-hidden">
-        <div className={`${showSidebar ? 'block' : 'hidden'} md:block w-full md:w-64 flex-shrink-0 overflow-y-auto`}>
-          <Sidebar
-            industries={industriesData.industries}
-            selectedIndustry={selectedIndustry}
-            onSelectIndustry={handleSelectIndustry}
-          />
-        </div>
-        <div className={`flex-1 overflow-y-auto ${showSidebar && isMobile ? 'hidden' : 'block'}`}>
+        {isMobile ? (
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="fixed top-4 left-4 z-50">
+                <Menu className="h-5 w-5" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="w-[300px] sm:w-[400px]">
+              {renderSidebar()}
+            </SheetContent>
+          </Sheet>
+        ) : (
+          <div className="w-64 flex-shrink-0 overflow-y-auto">
+            {renderSidebar()}
+          </div>
+        )}
+        <div className="flex-1 overflow-y-auto">
           <div className="p-4 md:p-8">
-            {!selectedCategory && <HeroSection onGetStarted={handleGetStarted} />}
+            <HeroSection onGetStarted={handleGetStarted} />
             <Card className="mb-6 bg-white dark:bg-cool-800 shadow-lg">
               <CardContent className="p-4 md:p-6">
                 <h1 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-200">{selectedIndustry}</h1>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Bell, User, Search, Menu } from 'lucide-react';
+import { Bell, User, Search } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 import NotificationDropdown from './NotificationDropdown';
 import {
@@ -13,7 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-const TaskBar = ({ onSearch, onToggleSidebar }) => {
+const TaskBar = ({ onSearch }) => {
   const handleSearch = (e) => {
     e.preventDefault();
     onSearch(e.target.elements.searchQuery.value);
@@ -21,12 +21,7 @@ const TaskBar = ({ onSearch, onToggleSidebar }) => {
 
   return (
     <div className="bg-background text-foreground shadow-md p-4 flex justify-between items-center">
-      <div className="flex items-center">
-        <Button variant="ghost" size="icon" className="mr-2 md:hidden" onClick={onToggleSidebar}>
-          <Menu className="h-5 w-5" />
-        </Button>
-        <div className="text-xl font-bold mr-4 hidden md:block">Industry Navigator</div>
-      </div>
+      <div className="text-xl font-bold mr-4">Industry Navigator</div>
       <form onSubmit={handleSearch} className="flex-grow max-w-md mx-4">
         <div className="relative">
           <Input
