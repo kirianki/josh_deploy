@@ -9,17 +9,17 @@ const WelcomeCarousel = ({ onClose }) => {
     {
       title: "Welcome to Industry Navigator",
       description: "Discover and connect with service providers across various industries.",
-      image: "/placeholder.svg",
+      image: "/1.jpg",
     },
     {
       title: "Find the Right Services",
       description: "Explore companies and experts offering services in your industry.",
-      image: "/placeholder.svg",
+      image: "/2.jpg",
     },
     {
       title: "Make Informed Decisions",
       description: "Get detailed information about service providers to choose the best fit for your needs.",
-      image: "/placeholder.svg",
+      image: "/3.jpg",
     },
   ];
 

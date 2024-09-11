@@ -18,7 +18,7 @@ const Sidebar = ({ industries, selectedIndustry, onSelectIndustry }) => {
       animate={{ width: "100%" }}
       className="bg-white dark:bg-gray-800 shadow-md h-full flex flex-col"
     >
-      <div className="p-4 bg-gray-800 dark:bg-gray-900 text-white">
+      <div className="p-4 bg-gray-600 dark:bg-gray-700 text-white">
         <h2 className="text-xl font-bold">Industry Navigator</h2>
       </div>
       <div className="p-4">
@@ -38,7 +38,7 @@ const Sidebar = ({ industries, selectedIndustry, onSelectIndustry }) => {
           <Button
             key={industry.name}
             variant={selectedIndustry === industry.name ? "default" : "ghost"}
-            className="w-full justify-start mb-2 text-left"
+            className={`w-full justify-start mb-2 text-left ${selectedIndustry === industry.name ? "bg-gray-600" : ""}`}
             onClick={() => onSelectIndustry(industry.name)}
           >
             {industry.name}

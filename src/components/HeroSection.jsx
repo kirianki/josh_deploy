@@ -38,7 +38,7 @@ const HeroSection = ({ onGetStarted }) => {
         </motion.div>
       </div>
       <div className="absolute inset-0 bg-gradient-to-r from-beige-200 via-beige-300 to-beige-200 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 opacity-50"></div>
-      <div className="absolute inset-0 bg-[url('/placeholder.svg')] bg-cover bg-center opacity-10"></div>
+      <div className="absolute inset-0 bg-[url('/test.jpeg')] bg-cover bg-center opacity-10"></div>
     </motion.div>
   );
 };
