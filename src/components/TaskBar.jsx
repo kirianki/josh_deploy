@@ -29,7 +29,7 @@ const TaskBar = ({ onToggleSidebar, onSearch }) => {
       <div className="flex items-center">
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="md:hidden mr-2" onClick={onToggleSidebar}>
+            <Button variant="ghost" size="icon" className="md:hidden mr-2">
               <Menu className="h-5 w-5" />
             </Button>
           </SheetTrigger>

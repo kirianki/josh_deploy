@@ -75,26 +75,19 @@ const Index = () => {
   );
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900">
+    <div className="flex flex-col min-h-screen bg-warm-50 dark:bg-cool-900">
       {showWelcome && <WelcomeCarousel onClose={() => setShowWelcome(false)} />}
-      <TaskBar onSearch={handleSearch} />
+      <TaskBar onSearch={handleSearch} onToggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
       <div className="flex flex-1 overflow-hidden">
-        <div className="md:hidden">
-          <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="ml-2 mt-2">
-                <Menu className="h-5 w-5" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="left" className="p-0">
-              <Sidebar
-                industries={industriesData.industries}
-                selectedIndustry={selectedIndustry}
-                onSelectIndustry={handleSelectIndustry}
-              />
-            </SheetContent>
-          </Sheet>
-        </div>
+        <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
+          <SheetContent side="left" className="p-0 w-[250px]">
+            <Sidebar
+              industries={industriesData.industries}
+              selectedIndustry={selectedIndustry}
+              onSelectIndustry={handleSelectIndustry}
+            />
+          </SheetContent>
+        </Sheet>
         <div className="hidden md:block">
           <Sidebar
             industries={industriesData.industries}
@@ -105,7 +98,7 @@ const Index = () => {
         <div className="flex-1 overflow-y-auto">
           <div className="p-4 md:p-8">
             {!selectedCategory && <HeroSection onGetStarted={handleGetStarted} />}
-            <Card className="mb-6 bg-white dark:bg-gray-800 shadow-lg">
+            <Card className="mb-6 bg-white dark:bg-cool-800 shadow-lg">
               <CardContent className="p-4 md:p-6">
                 <h1 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-200">{selectedIndustry}</h1>
                 <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 mt-2">Explore service providers and professionals in this industry</p>
