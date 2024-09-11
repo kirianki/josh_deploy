@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Bell, User, Search, Menu } from 'lucide-react';
@@ -14,9 +14,16 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 const TaskBar = ({ onSearch, onToggleSidebar }) => {
+  const [isSearchExpanded, setIsSearchExpanded] = useState(false);
+
   const handleSearch = (e) => {
     e.preventDefault();
     onSearch(e.target.elements.searchQuery.value);
+    setIsSearchExpanded(false);
+  };
+
+  const toggleSearch = () => {
+    setIsSearchExpanded(!isSearchExpanded);
   };
 
   return (
@@ -27,19 +34,27 @@ const TaskBar = ({ onSearch, onToggleSidebar }) => {
         </Button>
         <div className="text-xl font-bold mr-4 hidden md:block">Industry Navigator</div>
       </div>
-      <form onSubmit={handleSearch} className="flex-grow max-w-md mx-4">
-        <div className="relative">
-          <Input
-            type="text"
-            name="searchQuery"
-            placeholder="Search industries or categories..."
-            className="w-full pr-10"
-          />
-          <Button type="submit" size="icon" variant="ghost" className="absolute right-0 top-0 h-full">
+      <div className="flex-grow max-w-md mx-4 relative">
+        {isSearchExpanded ? (
+          <form onSubmit={handleSearch} className="w-full">
+            <Input
+              type="text"
+              name="searchQuery"
+              placeholder="Search industries or categories..."
+              className="w-full pr-10"
+              autoFocus
+              onBlur={() => setIsSearchExpanded(false)}
+            />
+            <Button type="submit" size="icon" variant="ghost" className="absolute right-0 top-0 h-full">
+              <Search className="h-5 w-5" />
+            </Button>
+          </form>
+        ) : (
+          <Button onClick={toggleSearch} variant="ghost" size="icon" className="mx-auto">
             <Search className="h-5 w-5" />
           </Button>
-        </div>
-      </form>
+        )}
+      </div>
       <div className="flex items-center space-x-2">
         <ThemeToggle />
         <NotificationDropdown />
