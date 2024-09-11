@@ -5,10 +5,10 @@ import { resolve } from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/josh_deploy/', // Add this line
   server: {
     host: "::",
     port: "8080",
-  },
   },
   plugins: [react()],
   resolve: {
