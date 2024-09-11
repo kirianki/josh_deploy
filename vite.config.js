@@ -9,13 +9,7 @@ export default defineConfig({
     host: "::",
     port: "8080",
   },
-  build: {
-    outDir: "dist", // Output directory for built files (optional)
-    rollupOptions: {
-      input: "./index.html", // Entry point for building
-    },
-    // Add the base URL if needed
-    base: "/josh_deploy/",
+  base: "/josh_deploy/",
   },
   plugins: [react()],
   resolve: {
