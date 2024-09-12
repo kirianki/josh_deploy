@@ -1,3 +1,4 @@
+// vite.config.js
 import { fileURLToPath, URL } from "url";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
@@ -5,7 +6,7 @@ import { resolve } from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/josh_deploy/', // Add this line
+  base: '/josh_deploy/', // Replace with your actual deployment path if needed
   server: {
     host: "::",
     port: "8080",
